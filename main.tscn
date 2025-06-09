@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b60evyj30472m"]
+[gd_scene load_steps=14 format=4 uid="uid://b60evyj30472m"]
 
 [ext_resource type="Texture2D" uid="uid://eqt8ekjo4jyo" path="res://assets/sprites/tiles/2.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dn2ge6y26mgyf" path="res://scripts/game.gd" id="1_5vw27"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c6mf04oag5c0b" path="res://assets/sprites/bg/BG.png" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bvfpvo3vhgemy" path="res://scenes/collectible.tscn" id="5_lquwl"]
 [ext_resource type="AudioStream" uid="uid://ds5jqu5irlmi8" path="res://assets/sounds/coin.wav" id="7_kek77"]
+[ext_resource type="PackedScene" uid="uid://bof0j66aeaq52" path="res://scenes/enemies/enemy_spawner.tscn" id="8_5vw27"]
+[ext_resource type="FontFile" uid="uid://baybgbe37rsk3" path="res://assets/fonts/Planes_ValMore.ttf" id="8_kek77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmrml"]
 texture = ExtResource("1_0xm2m")
@@ -791,15 +793,65 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Score" type="Label" parent="HUD/UI"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/UI"]
 layout_mode = 0
-offset_left = -1054.0
+offset_left = -1107.0
+offset_top = -596.0
+offset_right = -1067.0
+offset_bottom = -556.0
+bbcode_enabled = true
+text = "[img]res://assets/sprites/ui/character_icon.png[/img]"
+
+[node name="Lives" type="Label" parent="HUD/UI"]
+layout_mode = 0
+offset_left = -1070.0
 offset_top = -590.0
-offset_right = -1002.0
-offset_bottom = -567.0
+offset_right = -1036.0
+offset_bottom = -548.0
 theme_override_colors/font_color = Color(0.694118, 0.341176, 0.992157, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.00392157)
 theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("8_kek77")
 theme_override_font_sizes/font_size = 30
-text = "Score: "
+text = "x0"
 horizontal_alignment = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HUD/UI"]
+layout_mode = 0
+offset_left = -1018.0
+offset_top = -596.0
+offset_right = -978.0
+offset_bottom = -556.0
+bbcode_enabled = true
+text = "[img]res://assets/sprites/ui/coin_icon.png[/img]"
+
+[node name="Score" type="Label" parent="HUD/UI"]
+layout_mode = 0
+offset_left = -1014.0
+offset_top = -590.0
+offset_right = -949.0
+offset_bottom = -548.0
+theme_override_colors/font_color = Color(0.694118, 0.341176, 0.992157, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.00392157)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("8_kek77")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+
+[node name="GameOver" type="Label" parent="HUD/UI"]
+visible = false
+layout_mode = 0
+offset_left = -692.0
+offset_top = -326.0
+offset_right = -269.0
+offset_bottom = -258.0
+theme_override_colors/font_color = Color(0.694118, 0.341176, 0.992157, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.00392157)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("8_kek77")
+theme_override_font_sizes/font_size = 68
+text = "GAME OVER"
+horizontal_alignment = 2
+
+[node name="EnemySpawner" parent="." instance=ExtResource("8_5vw27")]
